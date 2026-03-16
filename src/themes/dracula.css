@@ -1,0 +1,20 @@
+[data-theme="dracula"] {
+  --bg-primary: #282a36;
+  --bg-secondary: #21222c;
+  --text-primary: #f8f8f2;
+  --text-secondary: #6272a4;
+  --accent: #bd93f9;
+  --accent-hover: #caa9fa;
+  --code-bg: #282a36;
+  --sidebar-bg: #21222c;
+  --card-bg: #282a36;
+  --input-bg: #21222c;
+  --tag-bg: #44475a;
+  --border-color: #44475a;
+  --hover-bg: #44475a;
+  --danger: #ff5555;
+  --success: #50fa7b;
+  --warning: #f1fa8c;
+  --scrollbar-bg: #282a36;
+  --scrollbar-thumb: #44475a;
+}

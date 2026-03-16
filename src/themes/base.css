@@ -1,0 +1,21 @@
+:root,
+[data-theme="dark"] {
+  --bg-primary: #1a1b26;
+  --bg-secondary: #24283b;
+  --text-primary: #c0caf5;
+  --text-secondary: #565f89;
+  --accent: #7aa2f7;
+  --accent-hover: #89b4fa;
+  --code-bg: #1f2335;
+  --sidebar-bg: #16161e;
+  --card-bg: #1f2335;
+  --input-bg: #1f2335;
+  --tag-bg: #292e42;
+  --border-color: #292e42;
+  --hover-bg: #292e42;
+  --danger: #f7768e;
+  --success: #9ece6a;
+  --warning: #e0af68;
+  --scrollbar-bg: #1a1b26;
+  --scrollbar-thumb: #292e42;
+}
