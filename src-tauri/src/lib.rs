@@ -17,18 +17,26 @@ pub fn run() {
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_global_shortcut::Builder::new().build())
         .setup(|app| {
-            let conn = init_db(app.handle()).map_err(|e| Box::new(e) as Box<dyn std::error::Error>)?;
+            app.handle().plugin(
+                tauri_plugin_log::Builder::default()
+                    .level(log::LevelFilter::Info)
+                    .build(),
+            )?;
+            log::info!("DevVault starting up...");
+            let conn = match init_db(app.handle()) {
+                Ok(c) => {
+                    log::info!("Database initialized successfully");
+                    c
+                }
+                Err(e) => {
+                    log::error!("Failed to initialize database: {}", e);
+                    return Err(Box::new(e) as Box<dyn std::error::Error>);
+                }
+            };
             app.manage(AppState {
                 db: Mutex::new(conn),
                 derived_key: Mutex::new(None),
             });
-            if cfg!(debug_assertions) {
-                app.handle().plugin(
-                    tauri_plugin_log::Builder::default()
-                        .level(log::LevelFilter::Info)
-                        .build(),
-                )?;
-            }
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
