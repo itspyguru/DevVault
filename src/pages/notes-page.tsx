@@ -55,7 +55,7 @@ export function NotesPage() {
       {filtered.length === 0 ? (
         <EmptyState icon={FileText} title="No notes yet" description="Quick notes for things you refer to often" action={{ label: "Add Note", onClick: () => setShowForm(true) }} />
       ) : (
-        <div className="grid gap-3">{filtered.map((n) => <NoteCard key={n.id} note={n} onEdit={setEditing} onDelete={setDeleteId} />)}</div>
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-3">{filtered.map((n) => <NoteCard key={n.id} note={n} onEdit={setEditing} onDelete={setDeleteId} />)}</div>
       )}
       {showForm && <NoteForm onSubmit={handleCreate} onClose={() => setShowForm(false)} />}
       {editing && <NoteForm note={editing} onSubmit={handleEdit} onClose={() => setEditing(null)} />}

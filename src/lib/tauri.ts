@@ -271,6 +271,40 @@ export async function deleteLink(id: string): Promise<void> {
   return safeInvoke("cmd_delete_link", { id });
 }
 
+// Workspace types
+export interface Workspace {
+  id: string;
+  name: string;
+  color: string;
+  created_at: string;
+}
+
+export interface CreateWorkspace {
+  name: string;
+  color?: string;
+}
+
+export interface UpdateWorkspace {
+  name?: string;
+  color?: string;
+}
+
+export async function createWorkspace(data: CreateWorkspace): Promise<Workspace> {
+  return safeInvoke("cmd_create_workspace", { data });
+}
+
+export async function getWorkspaces(): Promise<Workspace[]> {
+  return safeInvoke("cmd_get_workspaces");
+}
+
+export async function updateWorkspace(id: string, data: UpdateWorkspace): Promise<Workspace> {
+  return safeInvoke("cmd_update_workspace", { id, data });
+}
+
+export async function deleteWorkspace(id: string): Promise<void> {
+  return safeInvoke("cmd_delete_workspace", { id });
+}
+
 // Search
 export interface SearchResult {
   id: string;

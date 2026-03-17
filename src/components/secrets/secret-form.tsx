@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { TagInput } from "@/components/tags/tag-input";
 import type { Secret, CreateSecret, UpdateSecret } from "@/lib/tauri";
+import { WorkspaceSelect } from "@/components/shared/workspace-select";
 
 interface SecretFormProps {
   secret?: Secret | null;
@@ -100,10 +101,9 @@ export function SecretForm({ secret, onSubmit, onClose }: SecretFormProps) {
           />
 
           <div className="grid grid-cols-2 gap-3">
-            <input
+            <WorkspaceSelect
               value={company}
-              onChange={(e) => setCompany(e.target.value)}
-              placeholder="Company / Project"
+              onChange={setCompany}
               className="px-3 py-2 rounded-lg text-xs outline-none"
               style={inputStyle}
             />

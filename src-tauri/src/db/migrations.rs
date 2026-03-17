@@ -52,6 +52,13 @@ pub fn run_migrations(conn: &Connection) -> rusqlite::Result<()> {
             created_at TEXT NOT NULL,
             updated_at TEXT NOT NULL
         );
+
+        CREATE TABLE IF NOT EXISTS workspaces (
+            id TEXT PRIMARY KEY,
+            name TEXT NOT NULL UNIQUE,
+            color TEXT NOT NULL DEFAULT '#6366f1',
+            created_at TEXT NOT NULL
+        );
         ",
     )?;
 

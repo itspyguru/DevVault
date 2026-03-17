@@ -71,6 +71,10 @@ pub fn run() {
             commands::tags::cmd_get_companies,
             commands::backup::cmd_export_vault,
             commands::backup::cmd_import_vault,
+            commands::workspaces::cmd_create_workspace,
+            commands::workspaces::cmd_get_workspaces,
+            commands::workspaces::cmd_update_workspace,
+            commands::workspaces::cmd_delete_workspace,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

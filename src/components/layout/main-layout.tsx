@@ -3,6 +3,7 @@ import { Sidebar, type Page } from "./sidebar";
 import { Header } from "./header";
 import { useAuthStore } from "@/stores/auth-store";
 import { useSearchStore } from "@/stores/search-store";
+import { useWorkspaceStore } from "@/stores/workspace-store";
 import { initKeyboardListener, registerShortcut } from "@/lib/keyboard";
 import { SecretsPage } from "@/pages/secrets-page";
 import { CommandsPage } from "@/pages/commands-page";
@@ -23,8 +24,10 @@ export function MainLayout() {
   const [activePage, setActivePage] = useState<Page>("secrets");
   const { lock } = useAuthStore();
   const { toggle: toggleSearch, isOpen: searchOpen } = useSearchStore();
+  const { fetchWorkspaces } = useWorkspaceStore();
 
   useEffect(() => {
+    fetchWorkspaces();
     initKeyboardListener();
     registerShortcut("Ctrl+k", () => toggleSearch());
     registerShortcut("Ctrl+1", () => setActivePage("secrets"));
@@ -52,7 +55,7 @@ export function MainLayout() {
   return (
     <div className="h-full flex" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <Sidebar activePage={activePage} onNavigate={setActivePage} onLock={handleLock} />
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 relative">
         <Header title={pageTitles[activePage]} />
         <div className="flex-1 overflow-auto p-4">
           {renderPage()}

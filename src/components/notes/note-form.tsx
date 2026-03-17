@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { TagInput } from "@/components/tags/tag-input";
 import type { Note, CreateNote, UpdateNote } from "@/lib/tauri";
+import { WorkspaceSelect } from "@/components/shared/workspace-select";
 
 interface NoteFormProps {
   note?: Note | null;
@@ -50,7 +51,7 @@ export function NoteForm({ note, onSubmit, onClose }: NoteFormProps) {
         <form onSubmit={handleSubmit} className="space-y-3">
           <input ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title *" className="w-full px-3 py-2 rounded-lg text-xs outline-none" style={s} required />
           <textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder="Content (markdown supported) *" className="w-full px-3 py-2 rounded-lg text-xs outline-none font-mono resize-none" style={s} rows={10} required />
-          <input value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company / Project" className="w-full px-3 py-2 rounded-lg text-xs outline-none" style={s} />
+          <WorkspaceSelect value={company} onChange={setCompany} className="w-full px-3 py-2 rounded-lg text-xs outline-none" style={s} />
           <TagInput tags={tags} onChange={setTags} />
           <div className="flex justify-end gap-2 pt-2">
             <button type="button" onClick={onClose} className="px-4 py-2 rounded-lg text-xs font-medium" style={{ backgroundColor: "var(--bg-secondary)", color: "var(--text-primary)" }}>Cancel</button>

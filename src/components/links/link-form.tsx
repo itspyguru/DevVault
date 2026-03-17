@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { TagInput } from "@/components/tags/tag-input";
 import type { Link, CreateLink, UpdateLink } from "@/lib/tauri";
+import { WorkspaceSelect } from "@/components/shared/workspace-select";
 
 const categories = ["Dev Tools", "Company", "Docs", "Servers", "Learning", "Other"];
 
@@ -57,7 +58,7 @@ export function LinkForm({ link, onSubmit, onClose }: LinkFormProps) {
             <select value={category} onChange={(e) => setCategory(e.target.value)} className="px-3 py-2 rounded-lg text-xs outline-none" style={s}>
               {categories.map((c) => <option key={c} value={c}>{c}</option>)}
             </select>
-            <input value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company / Project" className="px-3 py-2 rounded-lg text-xs outline-none" style={s} />
+            <WorkspaceSelect value={company} onChange={setCompany} className="px-3 py-2 rounded-lg text-xs outline-none" style={s} />
           </div>
           <TagInput tags={tags} onChange={setTags} />
           <div className="flex justify-end gap-2 pt-2">

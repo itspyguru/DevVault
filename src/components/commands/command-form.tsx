@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { X } from "lucide-react";
 import { TagInput } from "@/components/tags/tag-input";
 import type { Command, CreateCommand, UpdateCommand } from "@/lib/tauri";
+import { WorkspaceSelect } from "@/components/shared/workspace-select";
 
 interface CommandFormProps {
   command?: Command | null;
@@ -53,7 +54,7 @@ export function CommandForm({ command, onSubmit, onClose }: CommandFormProps) {
           <input ref={titleRef} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title *" className="w-full px-3 py-2 rounded-lg text-xs outline-none" style={s} required />
           <textarea value={cmd} onChange={(e) => setCmd(e.target.value)} placeholder="Command *" className="w-full px-3 py-2 rounded-lg text-xs outline-none font-mono resize-none" style={s} rows={4} required />
           <input value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description (optional)" className="w-full px-3 py-2 rounded-lg text-xs outline-none" style={s} />
-          <input value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company / Project" className="w-full px-3 py-2 rounded-lg text-xs outline-none" style={s} />
+          <WorkspaceSelect value={company} onChange={setCompany} className="w-full px-3 py-2 rounded-lg text-xs outline-none" style={s} />
           <TagInput tags={tags} onChange={setTags} />
           <div className="flex justify-end gap-2 pt-2">
             <button type="button" onClick={onClose} className="px-4 py-2 rounded-lg text-xs font-medium" style={{ backgroundColor: "var(--bg-secondary)", color: "var(--text-primary)" }}>Cancel</button>
