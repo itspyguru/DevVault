@@ -38,11 +38,8 @@
     ]
   },
   "plugins": {
-    "dialog": {},
     "fs": {
       "scope": ["**"]
-    },
-    "clipboard-manager": {},
-    "global-shortcut": {}
+    }
   }
 }
